@@ -1,0 +1,6 @@
+node_modules
+dist
+*.js
+jest.config.js
+next.config.js
+test-utils.ts
