@@ -1,4 +1,4 @@
-import 'tailwindcss/tailwind.css';
+import '../public/styles/base.css';
 import { AppProps } from 'next/app';
 
 function EntryApp({ Component, pageProps } : AppProps) {

@@ -1,12 +1,7 @@
-import styled from 'styled-components';
-
-const Title = styled.h1`
-  color: #069;
-  font-size: 100px;
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-`;
+import { DefaultLayout } from '@presentation/layouts';
 
 export default function Home() {
-  return <Title>Churras</Title>;
+  return (
+    <DefaultLayout allFeatured>d</DefaultLayout>
+  );
 }
