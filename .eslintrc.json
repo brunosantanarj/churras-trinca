@@ -6,7 +6,9 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb"
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -21,14 +23,19 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "import/no-unresolved": "error",
         "react/jsx-filename-extension": [1, { "extensions": [ ".tsx"] }],
         "react/react-in-jsx-scope": 0,
-        "react/jsx-props-no-spreading": 0
+        "@typescript-eslint/explicit-module-boundary-types": 0,
+        "object-curly-spacing": ["error", "always"],
+        "array-bracket-spacing": ["error", "always"],
+        "comma-dangle": 1
     },
     "settings": {
         "import/resolver": {
           "typescript": {}
+        },
+        "react": {
+            "version": "detect"
         }
     }
 }

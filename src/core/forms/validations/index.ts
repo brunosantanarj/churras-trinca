@@ -1,0 +1,1 @@
+export { default as ValidationLogin } from './validation-login';

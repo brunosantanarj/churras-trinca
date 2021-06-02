@@ -19,9 +19,11 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
-      "@presentation/*": ["./src/presentation/*"]
+      "@presentation/*": ["./src/presentation/*"],
+      "@core/*": ["./src/core/*"]
     }
   },
   "exclude": ["node_modules"],

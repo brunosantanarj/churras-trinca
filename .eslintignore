@@ -1,6 +1,10 @@
 node_modules
 dist
 *.js
+*.spec.ts
+*.spec.tsx
+jest.setup.ts
+*.d.ts
 jest.config.js
 next.config.js
 test-utils.ts

@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Header = styled.header.attrs({
-  className: 'flex justify-center items-center',
+  className: 'flex justify-center items-center'
 })`
   background-image: url('/images/churras-background.svg');
   height: 334px;
@@ -30,7 +30,7 @@ export const Header = styled.header.attrs({
 `;
 
 export const Footer = styled.footer.attrs({
-  className: 'py-8 flex justify-center',
+  className: 'py-8 flex justify-center'
 })``;
 
 export const Title = styled.h1.attrs({

@@ -7,4 +7,3 @@ global.fetch = jest.fn();
 const mockedRouter = { push: () => {} };
 // @ts-ignore
 Router.router = mockedRouter;
-
