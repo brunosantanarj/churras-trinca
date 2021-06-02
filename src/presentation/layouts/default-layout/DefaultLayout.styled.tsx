@@ -2,12 +2,20 @@ import { Colors } from '@presentation/ui';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  ${({ theme }) => theme.allFeatured && `background-color: ${Colors.primary};`}
+  ${({ theme }) => theme.allFeatured
+    ? `background-color: ${Colors.primary};`
+    : 'background-color: #fafafa;'
+  }
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Header = styled.header.attrs({
   className: 'flex justify-center items-center'
 })`
+  background-color: ${Colors.primary};
   background-image: url('/images/churras-background.svg');
   height: 334px;
 
@@ -22,7 +30,7 @@ export const Header = styled.header.attrs({
       top: 0;
       bottom: 0;
       right: 0;
-      background-color: ${Colors.primary};
+      background-color: inherit;
       mask-image: -webkit-gradient(linear, left 100%, left 60%,
         from(rgba(255,216,54,1)), to(rgba(0,0,0,0)));
     }
@@ -30,7 +38,7 @@ export const Header = styled.header.attrs({
 `;
 
 export const Footer = styled.footer.attrs({
-  className: 'py-8 flex justify-center'
+  className: 'py-8 flex justify-center mt-auto'
 })``;
 
 export const Title = styled.h1.attrs({

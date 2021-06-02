@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 export const Wrapper = styled.section`
-  min-height: calc(100vh - 430px);
   background-color: ${Colors.primary}; 
   margin-top: -10px;
 `;

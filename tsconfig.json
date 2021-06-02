@@ -23,7 +23,8 @@
     "baseUrl": ".",
     "paths": {
       "@presentation/*": ["./src/presentation/*"],
-      "@core/*": ["./src/core/*"]
+      "@core/*": ["./src/core/*"],
+      "@helpers/*": ["./src/helpers/*"]
     }
   },
   "exclude": ["node_modules"],
