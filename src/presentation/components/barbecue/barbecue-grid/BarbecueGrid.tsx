@@ -4,20 +4,21 @@ import { BarbecuesContainer, BarbecueContainerProps } from '@presentation/contai
 import BarbecueInfoEvent from '../info-event';
 import AddBarbecueButton from '../add-barbecue-button';
 import * as Styled from './BarbecueGrid.styled';
+import { createBarbecueInfoProps } from '@core/barbecue/create-barbecue-info-props';
+
+const renderIfExistes = (condition: boolean, element: any) => condition ? element : null;
 
 const BarbecueGrid = ({ barbecues, addBarbecue, removeBarbecue }: BarbecueContainerProps) => (
   <Styled.Grid>
-    {barbecues.length > 0 ? barbecues.map(barbecue => (
-      <CardBox key={barbecue.name} onRemove={() => removeBarbecue(barbecue.name)}>
-        <BarbecueInfoEvent
-          eventDay={barbecue.date}
-          eventName={barbecue.name}
-          numberOfParticipants={barbecue.participants.length}
-          moneyCollected={barbecue.calculatedMoney}
-          type='box'
-        />
+    {renderIfExistes(barbecues.length > 0, barbecues.map(barbecue => (
+      <CardBox
+        key={barbecue.name}
+        onRemove={() => removeBarbecue(barbecue.name)}
+        uuid={barbecue.id}
+      >
+        <BarbecueInfoEvent {...createBarbecueInfoProps(barbecue, 'box')} />
       </CardBox>
-    )): null}
+    )))}
     <AddBarbecueButton onClick={addBarbecue}/>
   </Styled.Grid>
 )

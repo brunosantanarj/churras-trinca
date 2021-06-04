@@ -1,11 +1,13 @@
 import React from 'react'
+import Link from 'next/link';
 
 type Props = {
   children: React.ReactChild;
   onRemove: () => void;
+  uuid: string;
 }
 
-const CardBox = ({ children, onRemove }: Props) => {
+const CardBox = ({ children, onRemove, uuid }: Props) => {
   return (
     <div className="bg-white p-8 shadow-md relative">
       <button className="absolute right-2 top-2 text-red-500" onClick={onRemove}>
@@ -14,11 +16,10 @@ const CardBox = ({ children, onRemove }: Props) => {
         </svg>
       </button>
       
-      <a href="#">
-        {children}
-      </a>
+      <Link href={`/barbecues/${uuid}`}>
+        <a>{children}</a>
+      </Link>
     </div>
-    
   )
 }
 
