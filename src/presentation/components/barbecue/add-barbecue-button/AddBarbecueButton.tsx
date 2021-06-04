@@ -1,14 +1,15 @@
 import React from 'react'
 import { BarbecueIcon } from '@presentation/ui';
+import { AddBarbecueBoxButton } from './AddBarbecueButton.styled';
 
-const AddBarbecueButton = () => {
+const AddBarbecueButton = (props: React.HTMLAttributes<HTMLButtonElement>) => {
   return (
-    <button className="shadow-md bg-gray-100">
+    <AddBarbecueBoxButton {...props}>
       <BarbecueIcon />
       <span className="raleway font-bold text-xl mt-3 block">
         Adicionar Churras
       </span>
-    </button>
+    </AddBarbecueBoxButton>
   )
 }
 

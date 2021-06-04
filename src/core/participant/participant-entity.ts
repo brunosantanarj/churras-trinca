@@ -1,6 +1,6 @@
 import { IParticipant } from './participant-types';
 
-export default class UserEntity implements IParticipant {
+export default class ParticipantEntity implements IParticipant {
   name: string;
 
   email: string;

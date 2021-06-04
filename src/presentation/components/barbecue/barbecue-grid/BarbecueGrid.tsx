@@ -1,31 +1,25 @@
-import { CardBox } from '@presentation/components/primary';
 import React from 'react';
+import { CardBox } from '@presentation/components/primary';
+import { BarbecuesContainer, BarbecueContainerProps } from '@presentation/containers';
 import BarbecueInfoEvent from '../info-event';
 import AddBarbecueButton from '../add-barbecue-button';
 import * as Styled from './BarbecueGrid.styled';
 
-const info = {
-  eventDay: new Date(),
-  eventName: 'Aniversário Bruno',
-  numberOfParticipants: 14,
-  moneyCollected: 234
-}
+const BarbecueGrid = ({ barbecues, addBarbecue, removeBarbecue }: BarbecueContainerProps) => (
+  <Styled.Grid>
+    {barbecues.length > 0 ? barbecues.map(barbecue => (
+      <CardBox key={barbecue.name} onRemove={() => removeBarbecue(barbecue.name)}>
+        <BarbecueInfoEvent
+          eventDay={barbecue.date}
+          eventName={barbecue.name}
+          numberOfParticipants={barbecue.participants.length}
+          moneyCollected={barbecue.calculatedMoney}
+          type='box'
+        />
+      </CardBox>
+    )): null}
+    <AddBarbecueButton onClick={addBarbecue}/>
+  </Styled.Grid>
+)
 
-const BarbecueGrid = () => {
-  return (
-    <Styled.Grid>
-      <CardBox>
-        <BarbecueInfoEvent  {...info} type='box' />
-      </CardBox>
-      <CardBox>
-        <BarbecueInfoEvent  {...info} type='box' />
-      </CardBox>
-      <CardBox>
-        <BarbecueInfoEvent  {...info} type='box' />
-      </CardBox>
-      <AddBarbecueButton />
-    </Styled.Grid>
-  )
-}
-
-export default BarbecueGrid
+export default BarbecuesContainer(BarbecueGrid);
