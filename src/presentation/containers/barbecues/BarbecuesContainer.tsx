@@ -1,16 +1,17 @@
 import React from 'react'
 import { useRecoilState } from 'recoil';
-import BarbecueEntity from '@core/barbecue/barbecue-entity';
-import { barbecueFactory } from '@core/barbecue/barbecue-random-factory';
+import { BarbecueEntity, barbecueFactory } from '@core/barbecue';
+import { ParticipantEntity, IParticipant, createFakerParticipant } from '@core/participant';
 import { barbecueState } from './atoms';
-import ParticipantEntity from '@core/participant/participant-entity';
 
 export type BarbecueContainerProps = {
   barbecues: BarbecueEntity[],
   addBarbecue: () => void;
   removeBarbecue: (name: string) => void;
   toogleParticipant: (uuid: string, participantId: string, isEnable: boolean) => void;
-  enableParticipant: (uuid: string, participantId: string) => void;
+  updateContribution: (uuid: string, participantId: string, contribution: number) => void;
+  removeParticipants: (uuid: string) => void;
+  addParticipant: (uuid: string) => void;
 }
 
 type ComponentType = React.FunctionComponent<BarbecueContainerProps & any>
@@ -25,15 +26,42 @@ const BarbecuesContainer = (Component: ComponentType) => (props: any) => {
     setBarbecues(currentState => currentState.filter(barbecue => barbecue.name !== name));
   }
 
-  function toogleParticipant(uuid: string, participantId: string, isEnable: boolean) {
+  function setByBarbecueUUID(uuid: string, rest: (barbecue: BarbecueEntity) => Partial<BarbecueEntity>) {
     setBarbecues(currentState => currentState.map(barbecue => barbecue.id === uuid
-      ? new BarbecueEntity({
-        ...barbecue,
-        participants: barbecue.participants.map(participant => participant.id === participantId
-          ? new ParticipantEntity({ ...participant, isEnable })
-          : participant)
-        })
-      : barbecue))
+      ? new BarbecueEntity({ ...barbecue, ...rest(barbecue) })
+      : barbecue)
+    )
+  }
+
+  function updateParticipant(uuid: string, participantId: string, fields: Partial<IParticipant>) {
+    setByBarbecueUUID(uuid, (barbecue) => ({
+      participants: barbecue.participants.map(participant => participant.id === participantId
+        ? new ParticipantEntity({ ...participant, ...fields })
+        : participant)
+    }))
+  }
+
+  function removeParticipants(uuid: string) {
+    setByBarbecueUUID(uuid, (barbecue) => ({
+      participants: barbecue.participants.filter(participant => participant.isEnable)
+    }))
+  }
+
+  function addParticipant (uuid: string) {
+    setByBarbecueUUID(uuid, (barbecue) => ({
+      participants: [
+        ...barbecue.participants,
+        new ParticipantEntity(createFakerParticipant()),
+      ]
+    }))
+  }
+
+  function toogleParticipant(uuid: string, participantId: string, isEnable: boolean) {
+    updateParticipant(uuid, participantId, { isEnable });
+  }
+
+  function updateContribution(uuid: string, participantId: string, contribution: number) {
+    updateParticipant(uuid, participantId, { contribution });
   }
 
   return (
@@ -42,6 +70,9 @@ const BarbecuesContainer = (Component: ComponentType) => (props: any) => {
       addBarbecue={addBarbecue}
       removeBarbecue={removeBarbecue}
       toogleParticipant={toogleParticipant}
+      updateContribution={updateContribution}
+      removeParticipants={removeParticipants}
+      addParticipant={addParticipant}
       {...props}
     />
   )

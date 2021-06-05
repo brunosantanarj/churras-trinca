@@ -7,3 +7,11 @@ export const Wrapper = styled.section.attrs({
 export const Container = styled.section.attrs({
   className: 'bg-white p-8 shadow-md'
 })``;
+
+export const RemoveParticipantsButton = styled.button.attrs({
+  className: 'p-4 rounded-2xl bg-red-300 font-bold text-white w-full ml-20 mt-auto'
+})``;
+
+export const WrapperButtons = styled.button.attrs({
+  className: 'flex items-center w-full px-20',
+})``;

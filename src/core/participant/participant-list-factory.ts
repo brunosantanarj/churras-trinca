@@ -1,7 +1,7 @@
 import faker from 'faker';
 import ParticipantEntity from './participant-entity';
 
-const createFakerParticipant = () => {
+export const createFakerParticipant = () => {
   const name = faker.name.findName();
   return {
     id: faker.datatype.uuid(),

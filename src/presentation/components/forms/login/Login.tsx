@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router'
 import formReducer, { FieldIds } from '@presentation/hooks/forms/use-login-form';
 import { ValidationLogin } from '@core/forms/validations';
 import { Button } from '@presentation/ui';
@@ -6,6 +7,7 @@ import { formConfig, IFormConfig } from './data/form-config';
 import * as Styled from './Login.styled';
 
 const Login = () => {
+  const router = useRouter();
   const [ formState, formDispatch ] = formReducer();
 
   const validate = (event: React.FormEvent<HTMLFormElement>) => {
@@ -16,7 +18,7 @@ const Login = () => {
     formDispatch({ validations });
 
     if (isValidForm) {
-      console.log('redirect to churras page');
+      router.push('/barbecues');
     }
   };
 

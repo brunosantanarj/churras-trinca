@@ -1,4 +1,4 @@
-import { IParticipant } from "@core/participant/participant-types";
+import { IParticipant } from "@core/participant";
 import { IBarbecue } from "./barbecue.types";
 
 export default class BarbecueEntity implements IBarbecue {

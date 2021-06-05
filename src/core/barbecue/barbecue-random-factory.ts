@@ -1,4 +1,4 @@
-import { participantListFactory } from '@core/participant/participant-list-factory';
+import { participantListFactory } from '@core/participant';
 import faker from 'faker';
 import BarbecueEntity from './barbecue-entity';
 

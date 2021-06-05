@@ -1,4 +1,4 @@
-import BarbecueEntity from '@core/barbecue/barbecue-entity';
+import { BarbecueEntity } from '@core/barbecue';
 import { atom } from 'recoil';
 
 enum BarbecueStateEnum {

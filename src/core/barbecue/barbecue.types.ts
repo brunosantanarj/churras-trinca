@@ -1,4 +1,4 @@
-import { IParticipant } from "@core/participant/participant-types";
+import { IParticipant } from "@core/participant";
 export interface IBarbecue {
   date: Date;
   name: string;

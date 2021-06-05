@@ -1,10 +1,10 @@
 import React from 'react';
 import { CardBox } from '@presentation/components/primary';
 import { BarbecuesContainer, BarbecueContainerProps } from '@presentation/containers';
+import { createBarbecueInfoProps } from '@core/barbecue';
 import BarbecueInfoEvent from '../info-event';
 import AddBarbecueButton from '../add-barbecue-button';
 import * as Styled from './BarbecueGrid.styled';
-import { createBarbecueInfoProps } from '@core/barbecue/create-barbecue-info-props';
 
 const renderIfExistes = (condition: boolean, element: any) => condition ? element : null;
 
