@@ -60,5 +60,5 @@ $ docker build -t churras-frontend .
 Start container
 
 ```
-$ docker run -it -p 3000:3000 --rm --name running-churras-frontend churras-frontend
+$ docker run -it -p 80:80 --rm --name running-churras-frontend churras-frontend
 ```
