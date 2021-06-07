@@ -5,5 +5,5 @@ export const createBarbecueInfoProps = (props: BarbecueEntity, type: 'box'|'head
   eventName: props.name,
   eventDay: props.date,
   numberOfParticipants: props.totalOfParticipants,
-  moneyCollected: props?.calculatedMoney,
+  moneyCollected: props?.calculatedMoney
 });

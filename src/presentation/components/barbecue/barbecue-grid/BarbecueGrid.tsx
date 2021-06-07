@@ -6,7 +6,7 @@ import BarbecueInfoEvent from '../info-event';
 import AddBarbecueButton from '../add-barbecue-button';
 import * as Styled from './BarbecueGrid.styled';
 
-const renderIfExistes = (condition: boolean, element: any) => condition ? element : null;
+const renderIfExistes = (condition: boolean, element: unknown) => condition ? element : null;
 
 const BarbecueGrid = ({ barbecues, addBarbecue, removeBarbecue }: BarbecueContainerProps) => (
   <Styled.Grid>

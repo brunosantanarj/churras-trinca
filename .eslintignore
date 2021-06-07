@@ -8,3 +8,4 @@ jest.setup.ts
 jest.config.js
 next.config.js
 test-utils.ts
+ListParticipants.styled.tsx

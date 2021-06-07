@@ -7,5 +7,5 @@ enum BarbecueStateEnum {
 
 export const barbecueState = atom({
   key: BarbecueStateEnum.barbecues,
-  default: [] as BarbecueEntity[],
+  default: [] as BarbecueEntity[]
 });

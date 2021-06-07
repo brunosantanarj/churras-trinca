@@ -7,8 +7,11 @@ import InfoEvent from '../info-event';
 import * as Styled from './DetailedBarbecue.styled';
 import ListParticipants from './components/list-participants';
 
-type Props = {
+type ContainerProps = {
   selectedBarbecue: BarbecueEntity
+}
+
+type Props = ContainerProps & {
   toogleParticipant: (uuid: string, participantId: string, isEnable: boolean) => void;
   updateContribution: (uuid: string, participantId: string, contribution: number) => void;
   removeParticipants: (uuid: string) => void;
@@ -18,13 +21,13 @@ type Props = {
 const DetailedBarbecue = ({
   selectedBarbecue, toogleParticipant, updateContribution, removeParticipants, addParticipant }: Props) => {
   const toogle = (participant: IParticipant) => {
-    const toogleArguments = [selectedBarbecue.id, participant.id];
+    const toogleArguments = [ selectedBarbecue.id, participant.id ];
     if (participant.isEnable) {
-      toogleParticipant(...[...toogleArguments, false]);
+      toogleParticipant(...[ ...toogleArguments, false ]);
       return;
     }
 
-    toogleParticipant(...[...toogleArguments, true]);
+    toogleParticipant(...[ ...toogleArguments, true ]);
   }
 
   const setNewContribution = ({ id }: IParticipant, contribution: number) => {
@@ -53,4 +56,4 @@ const DetailedBarbecue = ({
   )
 }
 
-export default BarbecuesContainer(DetailedBarbecue);
+export default BarbecuesContainer<ContainerProps>(DetailedBarbecue);

@@ -14,8 +14,8 @@ const BarbecueByUUID = ({ uuid }: Props) => {
   function renderContent() {
     if (!selectedBarbecue) {
       return (
-        <h3 className="text-center font-bold text-xl">
-          Não há churrasco selecionado com o identificador "{uuid}"
+        <h3 className="text-center font-bold text-xl mt-4">
+          Não há churrasco selecionado com o identificador {`"${uuid}"`}
         </h3>
       )
     }

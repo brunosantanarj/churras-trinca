@@ -13,5 +13,5 @@ export const RemoveParticipantsButton = styled.button.attrs({
 })``;
 
 export const WrapperButtons = styled.button.attrs({
-  className: 'flex items-center w-full px-20',
+  className: 'flex items-center w-full px-20'
 })``;

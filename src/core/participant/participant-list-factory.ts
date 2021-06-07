@@ -9,7 +9,7 @@ export const createFakerParticipant = () => {
     email: faker.internet.email(name),
     drinkContribution: +faker.finance.amount(10, 100),
     contribution: +faker.finance.amount(30, 150),
-    isEnable: faker.datatype.boolean(),
+    isEnable: faker.datatype.boolean()
   }
 }
 

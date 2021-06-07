@@ -14,68 +14,71 @@ export type BarbecueContainerProps = {
   addParticipant: (uuid: string) => void;
 }
 
-type ComponentType = React.FunctionComponent<BarbecueContainerProps & any>
-const BarbecuesContainer = (Component: ComponentType) => (props: any) => {
-  const [ storedBarbecues, setBarbecues ] = useRecoilState(barbecueState);
+type ComponentType<T> = React.FunctionComponent<BarbecueContainerProps & T>;
 
-  function addBarbecue() {
-    setBarbecues(currentState => [...currentState, barbecueFactory()]);
-  }
-
-  function removeBarbecue(name: string) {
-    setBarbecues(currentState => currentState.filter(barbecue => barbecue.name !== name));
-  }
-
-  function setByBarbecueUUID(uuid: string, rest: (barbecue: BarbecueEntity) => Partial<BarbecueEntity>) {
-    setBarbecues(currentState => currentState.map(barbecue => barbecue.id === uuid
-      ? new BarbecueEntity({ ...barbecue, ...rest(barbecue) })
-      : barbecue)
+function BarbecuesContainer<T>(Component: ComponentType<T>) {
+  return (props: T) => {
+    const [ storedBarbecues, setBarbecues ] = useRecoilState(barbecueState);
+  
+    function addBarbecue() {
+      setBarbecues(currentState => [ ...currentState, barbecueFactory() ]);
+    }
+  
+    function removeBarbecue(name: string) {
+      setBarbecues(currentState => currentState.filter(barbecue => barbecue.name !== name));
+    }
+  
+    function setByBarbecueUUID(uuid: string, rest: (barbecue: BarbecueEntity) => Partial<BarbecueEntity>) {
+      setBarbecues(currentState => currentState.map(barbecue => barbecue.id === uuid
+        ? new BarbecueEntity({ ...barbecue, ...rest(barbecue) })
+        : barbecue)
+      )
+    }
+  
+    function updateParticipant(uuid: string, participantId: string, fields: Partial<IParticipant>) {
+      setByBarbecueUUID(uuid, (barbecue) => ({
+        participants: barbecue.participants.map(participant => participant.id === participantId
+          ? new ParticipantEntity({ ...participant, ...fields })
+          : participant)
+      }))
+    }
+  
+    function removeParticipants(uuid: string) {
+      setByBarbecueUUID(uuid, (barbecue) => ({
+        participants: barbecue.participants.filter(participant => participant.isEnable)
+      }))
+    }
+  
+    function addParticipant (uuid: string) {
+      setByBarbecueUUID(uuid, (barbecue) => ({
+        participants: [
+          ...barbecue.participants,
+          new ParticipantEntity(createFakerParticipant())
+        ]
+      }))
+    }
+  
+    function toogleParticipant(uuid: string, participantId: string, isEnable: boolean) {
+      updateParticipant(uuid, participantId, { isEnable });
+    }
+  
+    function updateContribution(uuid: string, participantId: string, contribution: number) {
+      updateParticipant(uuid, participantId, { contribution });
+    }
+  
+    return (
+      <Component
+        barbecues={storedBarbecues}
+        addBarbecue={addBarbecue}
+        removeBarbecue={removeBarbecue}
+        toogleParticipant={toogleParticipant}
+        updateContribution={updateContribution}
+        removeParticipants={removeParticipants}
+        addParticipant={addParticipant}
+        {...props}
+      />
     )
   }
-
-  function updateParticipant(uuid: string, participantId: string, fields: Partial<IParticipant>) {
-    setByBarbecueUUID(uuid, (barbecue) => ({
-      participants: barbecue.participants.map(participant => participant.id === participantId
-        ? new ParticipantEntity({ ...participant, ...fields })
-        : participant)
-    }))
-  }
-
-  function removeParticipants(uuid: string) {
-    setByBarbecueUUID(uuid, (barbecue) => ({
-      participants: barbecue.participants.filter(participant => participant.isEnable)
-    }))
-  }
-
-  function addParticipant (uuid: string) {
-    setByBarbecueUUID(uuid, (barbecue) => ({
-      participants: [
-        ...barbecue.participants,
-        new ParticipantEntity(createFakerParticipant()),
-      ]
-    }))
-  }
-
-  function toogleParticipant(uuid: string, participantId: string, isEnable: boolean) {
-    updateParticipant(uuid, participantId, { isEnable });
-  }
-
-  function updateContribution(uuid: string, participantId: string, contribution: number) {
-    updateParticipant(uuid, participantId, { contribution });
-  }
-
-  return (
-    <Component
-      barbecues={storedBarbecues}
-      addBarbecue={addBarbecue}
-      removeBarbecue={removeBarbecue}
-      toogleParticipant={toogleParticipant}
-      updateContribution={updateContribution}
-      removeParticipants={removeParticipants}
-      addParticipant={addParticipant}
-      {...props}
-    />
-  )
 }
 
 export default BarbecuesContainer;

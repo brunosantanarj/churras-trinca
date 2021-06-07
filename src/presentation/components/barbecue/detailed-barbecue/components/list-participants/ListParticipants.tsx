@@ -17,10 +17,10 @@ const currencyConfig = {
         style: "currency",
         currency: "BRL",
         minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      },
-    },
-  },
+        maximumFractionDigits: 2
+      }
+    }
+  }
 };
 
 const ListParticipants = ({ participants, onToggle, onChangeContribution }: Props) => {
@@ -38,7 +38,7 @@ const ListParticipants = ({ participants, onToggle, onChangeContribution }: Prop
   return (
     <Styled.WrapperList>
       {participants.map((participant) => (
-        <Styled.WrapperLine>
+        <Styled.WrapperLine key={participant.id}>
           <Styled.WrapperButton onClick={() => onToggle(participant)}>
             <Styled.ElementCircle isEnable={participant.isEnable}  />
             <Styled.LabelName>{participant.name}</Styled.LabelName>
