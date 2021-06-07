@@ -21,13 +21,16 @@ type Props = ContainerProps & {
 const DetailedBarbecue = ({
   selectedBarbecue, toogleParticipant, updateContribution, removeParticipants, addParticipant }: Props) => {
   const toogle = (participant: IParticipant) => {
-    const toogleArguments = [ selectedBarbecue.id, participant.id ];
+    function wrapperToogleParticipant(isEnable: boolean) {
+      toogleParticipant(selectedBarbecue.id, participant.id, isEnable);
+    }
+  
     if (participant.isEnable) {
-      toogleParticipant(...[ ...toogleArguments, false ]);
+      wrapperToogleParticipant(false);
       return;
     }
 
-    toogleParticipant(...[ ...toogleArguments, true ]);
+    wrapperToogleParticipant(true);
   }
 
   const setNewContribution = ({ id }: IParticipant, contribution: number) => {
