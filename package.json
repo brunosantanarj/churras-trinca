@@ -9,7 +9,7 @@
     "test": "jest --env=jsdom",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 80",
     "lint": "eslint \"**/*.{js,ts,tsx}\""
   },
   "devDependencies": {
