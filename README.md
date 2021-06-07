@@ -29,3 +29,36 @@ or
 $ yarn dev
 ```
 
+## Tests
+
+```
+$ npm run test
+```
+or
+```
+$ yarn test
+```
+
+## Linter
+
+```
+$ npm run lint
+```
+or
+```
+$ yarn lint
+```
+
+## Production 
+
+Create container
+
+```
+$ docker build -t churras-frontend .
+```
+
+Start container
+
+```
+$ docker run -it -p 3000:3000 --rm --name running-churras-frontend churras-frontend
+```
